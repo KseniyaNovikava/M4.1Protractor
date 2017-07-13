@@ -23,10 +23,6 @@ module.exports = class Page {
             });
     };
 
-    getCustomerTipElement(customer) {
-        return element(by.cssContainingText(".board-snapshot-tooltip-title", customer));
-    };
-
     scrollToBottom(){
          return browser.executeScript('window.scrollTo(0, document.body.scrollHeight)');
     };

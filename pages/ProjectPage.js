@@ -1,7 +1,6 @@
 const format = require('string-format');
 const Page = require('./Page.js');
 
-const CUSTOMER_CELL = '//div[@class="board-snapshot-container"]/div/div[text() = "{}"]';
 
 module.exports = class ProjectPage extends Page  {
 
@@ -17,15 +16,5 @@ module.exports = class ProjectPage extends Page  {
         this.inNumbersBoard = element(by.css('.board-in-numbers'));
 
     }
-
-    clickCell(text) {
-        let cell = element(by.xpath(format(CUSTOMER_CELL, text)));
-        return super.waitAndClick(cell);
-    };
-
-    mouseMoveToCell(text) {
-        let cell = element(by.xpath(format(CUSTOMER_CELL, text)));
-        return  browser.actions().mouseMove(cell).perform();
-    };
 
 }

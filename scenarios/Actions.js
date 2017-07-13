@@ -1,19 +1,22 @@
 const ProjectPage = require('./../pages/ProjectPage.js');
+const Cell = require('./../helpers/Cell.js');
 
 const CUSTOMER = 'Google';
 
 describe('Use WebDriver Actions', function () {
 
-    let projectPage;
+    let projectPage,
+        googleCell;
 
     beforeAll(() => {
         browser.get('https://staging.telescope.epam.com/health/board');
         projectPage = new ProjectPage();
+        googleCell = new Cell(CUSTOMER);
     });
 
     it('should verify project cell tooltip present', () => {
-        projectPage.mouseMoveToCell(CUSTOMER);
-        expect(projectPage.getCustomerTipElement(CUSTOMER).isPresent()).toBe(true);
+        googleCell.mouseMoveToCell();
+        expect(googleCell.isPresentCellTip()).toBe(true);
     });
 
     it('should open customer page using global search and key.enter', () => {
