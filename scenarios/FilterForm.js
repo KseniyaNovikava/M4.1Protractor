@@ -19,7 +19,7 @@ describe('Filter projects', () => {
 
     beforeAll(() => {
         browser.get('https://staging.telescope.epam.com/health/board');
-        filterFormPage = new FilterFormPage();
+        filterFormPage = pageFactory.getPage('filterForm');
     });
 
     it('should open filter', () => {

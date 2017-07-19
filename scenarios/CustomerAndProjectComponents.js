@@ -12,7 +12,7 @@ describe('Customer page components', function () {
 
     beforeAll(() => {
         browser.get('https://staging.telescope.epam.com/health/board');
-        projectPage = new ProjectPage();
+        projectPage =  pageFactory.getPage('project');
         customerCell = new Cell(CUSTOMER);
         projectCell = new Cell(PROJECT);
     });

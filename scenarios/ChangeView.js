@@ -6,7 +6,7 @@ describe('Change Filter View', function () {
 
     beforeAll(() => {
         browser.get('https://staging.telescope.epam.com/health/board');
-        page = new Page();
+        page =  pageFactory.getPage('page');
     });
 
     it('should display trend view statuses', () => {

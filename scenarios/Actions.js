@@ -1,16 +1,15 @@
-const ProjectPage = require('./../pages/ProjectPage.js');
 const Cell = require('./../helpers/Cell.js');
 
 const CUSTOMER = 'Google';
 
-describe('Use WebDriver Actions', function () {
+describe('Use WebDriver Actions', ()=> {
 
     let projectPage,
         googleCell;
 
     beforeAll(() => {
         browser.get('https://staging.telescope.epam.com/health/board');
-        projectPage = new ProjectPage();
+        projectPage = pageFactory.getPage('project');
         googleCell = new Cell(CUSTOMER);
     });
 
