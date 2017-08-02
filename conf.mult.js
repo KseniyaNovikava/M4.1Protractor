@@ -6,11 +6,16 @@ exports.config = {
     chromeOnly: true,
     chromeDriver: 'webdriver/chromedriver',
     framework: 'jasmine2',
-    capabilities: {
-        'browserName': process.env.BROWSER,
-    },
-    //seleniumServerJar: 'selenium-server-standalone-3.4.0.jar',
-    specs: ['scenarios/Actions.js'],
+    multiCapabilities: [{
+        browserName: 'chrome',
+        maxInstances: 2,
+        shardTestFiles: true,
+    }, {
+        browserName: 'firefox',
+        maxInstances: 2,
+        shardTestFiles: true,
+    }],
+    specs: ['scenarios/*'],
     onPrepare: function () {
         global.elementHelper = new ElementHelper();
         global.pageFactory = new PageFactory();
