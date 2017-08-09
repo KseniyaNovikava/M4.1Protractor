@@ -2,7 +2,7 @@ const format = require('string-format');
 const Page = require('./Page.js');
 
 const FILTER = '[ng-model="filterOptions.{}"] .filtersOptionsField__caret';
-const FILTER_OPTIONS = '[ng-model="filterOptions.{}"] li.filtersOptionsList__option[role="readMoreButton"]';
+const FILTER_OPTIONS = '[ng-model="filterOptions.{}"] li.filtersOptionsList__option[role="button"]';
 
 module.exports = class FilterFormPage extends Page {
 
@@ -10,6 +10,7 @@ module.exports = class FilterFormPage extends Page {
 
         super();
         this.filtersForm = element(by.id("advanced-filters"));
+        this.clearFilters = element(by.css('[ng-click="resetFilters()"]'));
         this.checked = element.all(by.css(".fa.fa-check"));
 
     }

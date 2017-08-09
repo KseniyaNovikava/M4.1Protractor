@@ -5,13 +5,20 @@ describe('Change Filter View', function () {
     let page;
 
     beforeAll(() => {
-        browser.get('https://staging.telescope.epam.com/health/board');
-        page =  pageFactory.getPage('page');
+        page = pageFactory.getPage('page');
+    });
+
+    beforeEach(() => {
+        page.openPage();
+    });
+
+    afterEach(() => {
+        page.clearSession();
     });
 
     it('should display trend view statuses', () => {
-       page.waitAndClick(page.trendViewBtn);
-       expect(page.trendViewGraph.isPresent()).toBe(true);
+        page.waitAndClick(page.trendViewBtn);
+        expect(page.trendViewGraph.isPresent()).toBe(true);
     });
 
     it('should display snapshot view', () => {

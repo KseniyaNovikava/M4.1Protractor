@@ -11,10 +11,17 @@ describe('Customer page components', function () {
         projectCell;
 
     beforeAll(() => {
-        browser.get('https://staging.telescope.epam.com/health/board');
         projectPage =  pageFactory.getPage('project');
         customerCell = new Cell(CUSTOMER);
         projectCell = new Cell(PROJECT);
+    });
+
+    beforeEach(() => {
+        projectPage.openPage();
+    });
+
+    afterEach(() => {
+        projectPage.clearSession();
     });
 
     it('should verify customer header', () => {

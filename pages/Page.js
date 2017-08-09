@@ -4,7 +4,7 @@ module.exports = class Page {
 
     constructor() {
 
-        this.filtersBtn = element(by.css(".advanced-filters-readMoreButton"));
+        this.filtersBtn = element(by.css("button.advanced-filters-button"));
         this.mapViewBtn = element(by.css('[uib-tooltip="Heat Map View"]'));
         this.snapshotViewBtn = element(by.css('[uib-tooltip="Snapshot View"]'));
         this.trendViewBtn = element(by.css('[uib-tooltip="Trend View"]'));
@@ -30,6 +30,17 @@ module.exports = class Page {
     highlightElement (element){
         return browser.executeAsyncScript("arguments[0].style.backgroundColor = '" + "yellow" + "'", element)
     };
+
+    openPage (){
+        browser.get('https://staging.telescope.epam.com/health/board');
+    };
+
+    clearSession(){
+        return browser.executeScript('window.localStorage.clear();')
+            .then(() => {
+                browser.manage().deleteAllCookies();
+            });
+    }
 
 
 }

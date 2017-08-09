@@ -5,7 +5,7 @@ const gulp = require('gulp'),
 gulp.task('default', (callback) => {
     util.env.browser ? process.env.BROWSER = util.env.browser : process.env.BROWSER = 'chrome';
     gulp
-        .src(['scenarios/*'])
+        .src(['scenarios/FilterForm.js'])
         .pipe(gulpProtractorAngular({
             'configFile': 'conf.js',
             'debug': false,

@@ -8,9 +8,16 @@ describe('Use WebDriver Actions', ()=> {
         googleCell;
 
     beforeAll(() => {
-        browser.get('https://staging.telescope.epam.com/health/board');
         projectPage = pageFactory.getPage('project');
         googleCell = new Cell(CUSTOMER);
+    });
+
+    beforeEach(() => {
+        projectPage.openPage();
+    });
+
+    afterEach(() => {
+        projectPage.clearSession();
     });
 
     it('should verify project cell tooltip present', () => {

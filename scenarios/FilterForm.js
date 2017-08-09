@@ -18,8 +18,15 @@ describe('Filter projects', () => {
     let filterFormPage;
 
     beforeAll(() => {
-        browser.get('https://staging.telescope.epam.com/health/board');
         filterFormPage = pageFactory.getPage('filterForm');
+    });
+
+    beforeEach(() => {
+        filterFormPage.openPage();
+    });
+
+    afterAll(() => {
+        filterFormPage.clearSession();
     });
 
     it('should open filter', () => {
@@ -28,21 +35,31 @@ describe('Filter projects', () => {
         expect(filterFormPage.filtersForm.isPresent()).toBe(true);
     });
 
-    it('should filter by delivery status', () => {
-        filterFormPage.filter(FILTER_FIELDS.DELIVERY_STATUS, FILTER_OPTIONS.RED, FILTER_OPTIONS.AMBER);
-        expect(filterFormPage.checked.get(FILTER_OPTIONS.RED).getAttribute('aria-hidden')).toBe('false');
-        expect(filterFormPage.checked.get(FILTER_OPTIONS.AMBER).getAttribute('aria-hidden')).toBe('false');
+    describe('Filter by statuses', () => {
+
+        beforeEach(() => {
+            filterFormPage.filtersBtn.click();
+        });
+
+        afterEach(() => {
+            filterFormPage.clearFilters.click();
+        });
+
+        it('should filter by delivery status', () => {
+            filterFormPage.filter(FILTER_FIELDS.DELIVERY_STATUS, FILTER_OPTIONS.RED, FILTER_OPTIONS.AMBER);
+            expect(filterFormPage.checked.get(FILTER_OPTIONS.RED).getAttribute('aria-hidden')).toBe('false');
+            expect(filterFormPage.checked.get(FILTER_OPTIONS.AMBER).getAttribute('aria-hidden')).toBe('false');
+        });
+
+        it('should filter by staffing status', () => {
+            filterFormPage.filter(FILTER_FIELDS.STAFFING_STATUS, FILTER_OPTIONS.GREEN);
+            expect(filterFormPage.checked.get(FILTER_OPTIONS.GREEN).getAttribute('aria-hidden')).toBe('false');
+        });
+
+        it('should filter by forecast status', () => {
+            filterFormPage.filter(FILTER_FIELDS.FORECAST_STATUS, FILTER_OPTIONS.AMBER);
+            expect(filterFormPage.checked.get(FILTER_OPTIONS.AMBER).getAttribute('aria-hidden')).toBe('false');
+        });
 
     });
-
-    it('should filter by staffing status', () => {
-        filterFormPage.filter(FILTER_FIELDS.STAFFING_STATUS, FILTER_OPTIONS.GREEN);
-        expect(filterFormPage.checked.get(FILTER_OPTIONS.GREEN).getAttribute('aria-hidden')).toBe('false');
-    });
-
-    it('should filter by forecast status', () => {
-        filterFormPage.filter(FILTER_FIELDS.FORECAST_STATUS, FILTER_OPTIONS.AMBER);
-        expect(filterFormPage.checked.get(FILTER_OPTIONS.AMBER).getAttribute('aria-hidden')).toBe('false');
-    });
-
 });
