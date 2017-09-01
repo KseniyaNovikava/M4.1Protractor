@@ -1,7 +1,7 @@
 const format = require('string-format');
 const Page = require('./Page.js');
 
-const FILTER = '[ng-model="filterOptions.{}"] .filtersOptionsField__caret';
+const FILTER = '[ng-model="filterOptions.{}"] .dhm-dropdown-field__caret';
 const FILTER_OPTIONS = '[ng-model="filterOptions.{}"] li.filtersOptionsList__option[role="button"]';
 
 module.exports = class FilterFormPage extends Page {
@@ -25,6 +25,8 @@ module.exports = class FilterFormPage extends Page {
     filter(field, ...params) {
         let fileterField = element(by.css(format(FILTER, field)));
         let options = element.all(by.css(format(FILTER_OPTIONS, field)));
+        const log = `filter by ${params} ${field} : ${element.locator()}`;
+        logger.debug(log);
 
         super.waitAndClick(fileterField);
         this.clearAllOptions(options);

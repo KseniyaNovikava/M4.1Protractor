@@ -17,25 +17,31 @@ module.exports = class Page {
     }
 
     waitAndClick(element) {
+        const log = `waitForElementVisible: ${element.locator()}`;
+        logger.info(log);
         return browser.wait(protractor.ExpectedConditions.elementToBeClickable(element))
             .then(() => {
                 return element.click();
             });
     };
 
-    scrollToBottom(){
-         return browser.executeScript('window.scrollTo(0, document.body.scrollHeight)');
+    scrollToBottom() {
+        return browser.executeScript('window.scrollTo(0, document.body.scrollHeight)');
     };
 
-    highlightElement (element){
+    highlightElement(element) {
+        const log = `highlightElement: ${element.locator()}`;
+        logger.info(log);
         return browser.executeAsyncScript("arguments[0].style.backgroundColor = '" + "yellow" + "'", element)
     };
 
-    openPage (){
+    openPage() {
+        const log = `get page : https://staging.telescope.epam.com/health/board`;
+        logger.info(log);
         browser.get('https://staging.telescope.epam.com/health/board');
     };
 
-    clearSession(){
+    clearSession() {
         return browser.executeScript('window.localStorage.clear();')
             .then(() => {
                 browser.manage().deleteAllCookies();

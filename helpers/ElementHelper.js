@@ -1,6 +1,9 @@
+const logger = require('./LoggerHelper.js');
 module.exports = class ElementHelper {
 
     waitForElementVisible(element){
+        const log = `waitForElementVisible: ${element.locator()}`;
+        logger.debug(log);
         browser.wait(protractor.ExpectedConditions.visibilityOf(element));
     }
 
@@ -9,6 +12,8 @@ module.exports = class ElementHelper {
     }
 
     waitAndClick(element) {
+        const log = `waitAndClick: ${element.locator()}`;
+        logger.info(log);
         return this.waitForElementClickable.then(() => {
                 return element.click();
             });

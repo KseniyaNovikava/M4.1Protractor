@@ -8,7 +8,8 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "jasmine-spec-reporter": "^4.2.0"
+    "jasmine-spec-reporter": "^4.2.0",
+    "protractor-jasmine2-screenshot-reporter": "^0.4.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

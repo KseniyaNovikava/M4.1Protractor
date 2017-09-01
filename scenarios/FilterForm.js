@@ -31,7 +31,7 @@ describe('Filter projects', () => {
 
     it('should open filter', () => {
         browser.wait(protractor.ExpectedConditions.presenceOf(filterFormPage.filtersBtn), 10000);
-        filterFormPage.filtersBtn.click();
+        filterFormPage.waitAndClick(filterFormPage.filtersBtn);
         expect(filterFormPage.filtersForm.isPresent()).toBe(true);
     });
 
